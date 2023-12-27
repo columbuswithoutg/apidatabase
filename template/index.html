@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Addresses List</title>
+</head>
+<body>
+    <h1>Addresses List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Address ID</th>
+                <th>Building Number</th>
+                <th>Street Number</th>
+                <th>Locality</th>
+                <th>Town City</th>
+                <th>ZIP Postcode</th>
+                <th>Province</th>
+                <th>Country</th>
+                <th>Other Details</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for address in addresses %}
+                <tr>
+                    <td>{{ address[0] }}</td>
+                    <td>{{ address[1] }}</td>
+                    <td>{{ address[2] }}</td>
+                    <td>{{ address[3] }}</td>
+                    <td>{{ address[4] }}</td>
+                    <td>{{ address[5] }}</td>
+                    <td>{{ address[6] }}</td>
+                    <td>{{ address[7] }}</td>
+                    <td>{{ address[8] }}</td>
+                    <td>
+                        <a href="{{ url_for('edit', id=address[0]) }}">Edit</a>
+                        <a href="{{ url_for('delete', id=address[0]) }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{{ url_for('edit', id=0) }}">Add Address</a></p>
+</body>
+</html> 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>{% if address %}Edit Address{% else %}Add Address{% endif %}</title>
+</head>
+<body>
+    <h1>{% if address %}Edit Address{% else %}Add Address{% endif %}</h1>
+    <form method="POST" action="{% if address %}{{ url_for('edit', id=address[0]) }}{% else %}{{ url_for('add') }}{% endif %}">
+        <label for="address_id">Address ID:</label>
+        <input type="text" id="address_id" name="address_id" value="{% if address %}{{ address[0] }}{% endif %}" required><br>
+
+        <label for="line_1_number_building">Line 1/Building:</label>
+        <input type="text" id="line_1_number_building" name="line_1_number_building" value="{% if address %}{{ address[1] }}{% endif %}" required><br>
+
+        <label for="line_2_number_street">Line 2/Street:</label>
+        <input type="text" id="line_2_number_street" name="line_2_number_street" value="{% if address %}{{ address[2] }}{% endif %}"><br>
+
+        <label for="line_3_number_locality">Line 3/Locality:</label>
+        <input type="text" id="line_3_number_locality" name="line_3_number_locality" value="{% if address %}{{ address[3] }}{% endif %}"><br>
+
+        <label for="town_city">Town City:</label>
+        <input type="text" id="town_city" name="town_city" value="{% if address %}{{ address[4] }}{% endif %}" required><br>
+
+        <label for="zip_postcode">ZIP/Postcode:</label>
+        <input type="text" id="zip_postcode" name="zip_postcode" value="{% if address %}{{ address[5] }}{% endif %}" required><br>
+
+        <label for="country_state_province">State/Province:</label>
+        <input type="text" id="country_state_province" name="country_state_province" value="{% if address %}{{ address[6] }}{% endif %}" required><br>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" value="{% if address %}{{ address[7] }}{% endif %}" required><br>
+
+        <label for="other_address_details">Other Address Details:</label>
+        <input type="text" id="other_address_details" name="other_address_details" value="{% if address %}{{ address[8] }}{% endif %}"><br>
+
+        <button type="submit">{% if address %}Update{% else %}Add{% endif %}</button>
+    </form>
+</body>
+</html>
